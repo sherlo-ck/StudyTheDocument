@@ -56,7 +56,7 @@
 
 ### 2.2 下载插件 **MapStruct support**
 
-![image-20240918003301781](D:\typora\photos\image-20240918003301781.png)
+![image-20240918003301781.png](image-20240918003301781.png)
 
 ## 3 测试
 
