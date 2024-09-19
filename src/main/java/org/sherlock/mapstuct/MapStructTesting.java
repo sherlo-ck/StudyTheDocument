@@ -59,4 +59,18 @@ public class MapStructTesting {
         log.info("mapStuctTestVO3:{}", mapStuctTestVO3);
     }
 
+
+    /**
+     * 字段不一致时转化
+     */
+    @Test
+    public void fieldDifferent() {
+
+        MapStuctTest mapStuctTest = MapStuctTest.builder().name("王伟").age(25).address("scd").createTime(LocalDateTime.now()).updateTime("2024-09-18 23:32:11").money(11.1).build();
+
+        MapStuctTestVO4 mapStuctTestVO4 = MapStuctCoverBasic.INSTANCE.toVO4(mapStuctTest);
+
+        log.info("mapStuctTestVO4:{}", mapStuctTestVO4);
+    }
+
 }

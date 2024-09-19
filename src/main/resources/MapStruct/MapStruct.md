@@ -177,6 +177,23 @@ public interface MapStuctCoverBasic {
 ### 3.3 字段类型不一致转换
 
 ```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class MapStuctTestVO3 {
+
+    private String name;
+
+    private Integer age;
+
+    private String createTime;
+
+    private LocalDateTime updateTime;
+
+    private Integer money;
+}
+
 @Mapper(componentModel = "spring")
 public interface MapStuctCoverBasic {
 
@@ -231,6 +248,52 @@ public class MappingCoverUtils {
         log.info("mapStuctTestVO3:{}", mapStuctTestVO3);
         // 输出结果
         // mapStuctTestVO3:MapStuctTestVO3(name=王伟, age=25, createTime=20240918, updateTime=2024-09-18T23:32:11, money=11)
+    }
+```
+
+3.4 字段不一致转换
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class MapStuctTestVO4 {
+
+    private String userName;
+
+    private Integer userAge;
+
+    private String address;
+
+    private LocalDateTime createTime;
+
+    private String updateTime;
+
+    private Double money;
+}
+
+@Mapper(componentModel = "spring")
+public interface MapStuctCoverBasic {
+    // 字段名称不一致时
+    @Mappings({
+            @Mapping(target = "userName", source = "name"),
+            @Mapping(target = "userAge", source = "age")
+    })
+    MapStuctTestVO4 toVO4(MapStuctTest source);
+}
+
+    /**
+     * 字段不一致时转化
+     */
+    @Test
+    public void fieldDifferent() {
+
+        MapStuctTest mapStuctTest = MapStuctTest.builder().name("王伟").age(25).address("scd").createTime(LocalDateTime.now()).updateTime("2024-09-18 23:32:11").money(11.1).build();
+
+        MapStuctTestVO4 mapStuctTestVO4 = MapStuctCoverBasic.INSTANCE.toVO4(mapStuctTest);
+
+        log.info("mapStuctTestVO4:{}", mapStuctTestVO4);
     }
 ```
 

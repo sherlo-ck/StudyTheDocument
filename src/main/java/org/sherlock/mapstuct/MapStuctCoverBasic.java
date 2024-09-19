@@ -25,9 +25,18 @@ public interface MapStuctCoverBasic {
 
     // 字段类型不一致时
     @Mappings({
-            @Mapping(target = "createTime", expression = "java(org.sherlock.tool_test.mapstuct.MappingCoverUtils.localDateTimeCoverToString(source.getCreateTime()))"),
-            @Mapping(target = "updateTime", expression = "java(org.sherlock.tool_test.mapstuct.MappingCoverUtils.stringCoverToLocalDateTime(source.getUpdateTime()))"),
-            @Mapping(target = "money", expression = "java(org.sherlock.tool_test.mapstuct.MappingCoverUtils.DoubleCoverToInteger(source.getMoney()))")
+            @Mapping(target = "createTime", expression = "java(org.sherlock.mapstuct.MappingCoverUtils.localDateTimeCoverToString(source.getCreateTime()))"),
+            @Mapping(target = "updateTime", expression = "java(org.sherlock.mapstuct.MappingCoverUtils.stringCoverToLocalDateTime(source.getUpdateTime()))"),
+            @Mapping(target = "money", expression = "java(org.sherlock.mapstuct.MappingCoverUtils.DoubleCoverToInteger(source.getMoney()))")
     })
     MapStuctTestVO3 toVO3(MapStuctTest source);
+
+    // 字段名称不一致时
+    @Mappings({
+            @Mapping(target = "userName", source = "name"),
+            @Mapping(target = "userAge", source = "age")
+    })
+    MapStuctTestVO4 toVO4(MapStuctTest source);
 }
+
+
